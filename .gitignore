@@ -1,0 +1,38 @@
+# Ignorar pastas de build
+build/
+dist/
+
+# Ignorar configurações privadas do NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# Ignorar arquivos de cache
+*.bak
+*.tmp
+*.log
+
+# Ignorar arquivos compilados Java
+*.class
+
+# Ignorar diretórios do sistema
+.DS_Store
+Thumbs.db
+
+# Se usar Maven/Gradle no projeto
+target/
+.gradle/
+out/
+
+# Configurações locais específicas do usuário
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# Ignorar pacotes zipados ou jars locais
+*.jar
+*.war
+*.ear
+*.zip
