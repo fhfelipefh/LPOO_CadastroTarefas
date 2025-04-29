@@ -4,6 +4,7 @@ import controller.TaskController;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import model.Task;
 
 public class TasksJF extends JFrame {
@@ -27,7 +28,6 @@ public class TasksJF extends JFrame {
         btnAdicionar = new JButton("Adicionar");
         btnRemover = new JButton("Remover");
         btnEditar = new JButton("Editar");
-
         btnAdicionar.addActionListener(e -> onAdd());
         btnRemover.addActionListener(e -> onRemove());
         btnEditar.addActionListener(e -> onEdit());
@@ -56,12 +56,11 @@ public class TasksJF extends JFrame {
                 .getColumn(3)
                 .setCellEditor(new DefaultCellEditor(new JCheckBox()));
 
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(SwingConstants.CENTER);
         taskTable.getColumnModel()
-                .getColumn(4)
-                .setCellRenderer(new ButtonRenderer());
-        taskTable.getColumnModel()
-                .getColumn(4)
-                .setCellEditor(new ButtonEditor(taskTable));
+                .getColumn(3)
+                .setCellRenderer(center);
     }
 
     private void onAdd() {
@@ -76,7 +75,7 @@ public class TasksJF extends JFrame {
 
     private void onRemove() {
         int row = taskTable.getSelectedRow();
-        if (row == -1) {
+        if (row < 0) {
             JOptionPane.showMessageDialog(this,
                     "Selecione uma tarefa para remover.",
                     "Nenhuma seleção",
@@ -96,7 +95,7 @@ public class TasksJF extends JFrame {
 
     private void onEdit() {
         int row = taskTable.getSelectedRow();
-        if (row == -1) {
+        if (row < 0) {
             JOptionPane.showMessageDialog(this,
                     "Selecione uma tarefa para editar.",
                     "Nenhuma seleção",
