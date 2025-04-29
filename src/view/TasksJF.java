@@ -2,9 +2,10 @@ package view;
 
 import controller.TaskController;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import model.Task;
 
 public class TasksJF extends JFrame {
@@ -56,11 +57,9 @@ public class TasksJF extends JFrame {
                 .getColumn(3)
                 .setCellEditor(new DefaultCellEditor(new JCheckBox()));
 
-        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
-        center.setHorizontalAlignment(SwingConstants.CENTER);
         taskTable.getColumnModel()
                 .getColumn(3)
-                .setCellRenderer(center);
+                .setCellRenderer(new CheckBoxRenderer());
     }
 
     private void onAdd() {
@@ -114,5 +113,23 @@ public class TasksJF extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TasksJF().setVisible(true));
+    }
+
+    private static class CheckBoxRenderer extends JCheckBox implements TableCellRenderer {
+        public CheckBoxRenderer() {
+            setHorizontalAlignment(SwingConstants.CENTER);
+            setOpaque(false);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+            setSelected(value != null && Boolean.TRUE.equals(value));
+            return this;
+        }
     }
 }
