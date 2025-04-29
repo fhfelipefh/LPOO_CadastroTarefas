@@ -1,41 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package visão;
+package view;
 
-import controle.TaskController;
+import controller.TaskController;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import modelo.Task;
+import model.Task;
 
-/**
- *
- * @author vanessalagomachado
- */
-public class CursosJF extends javax.swing.JFrame {
+public class TasksJF extends javax.swing.JFrame {
 
-    ArrayList<Task> listaCursos = new ArrayList<>();
+    ArrayList<Task> tasksList = new ArrayList<>();
     
-    
-    public void carregarCursos(){
-        DefaultListModel modelo = new DefaultListModel();
-        modelo.removeAllElements();
+    public void loadTaskTypes(){
+        DefaultListModel defaultListModel = new DefaultListModel();
+        defaultListModel.removeAllElements();
         
-        for(Task c: listaCursos){
-            modelo.addElement(c);
+        for(Task task: tasksList){
+            defaultListModel.addElement(task);
         }
-        
-        lstCursos.setModel(modelo);
+
+        taskJList.setModel(defaultListModel);
     }
-    
-    
-    /**
-     * Creates new form CursosJF
-     */
-    public CursosJF() {
+
+    public TasksJF() {
         initComponents();
-        carregarCursos();
+        loadTaskTypes();
     }
 
     /**
@@ -49,7 +36,7 @@ public class CursosJF extends javax.swing.JFrame {
 
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstCursos = new javax.swing.JList<>();
+        taskJList = new javax.swing.JList<>();
         btnAdicionar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -59,7 +46,7 @@ public class CursosJF extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblTitulo.setText("Cursos Cadastrados");
 
-        jScrollPane1.setViewportView(lstCursos);
+        jScrollPane1.setViewportView(taskJList);
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,9 +102,9 @@ public class CursosJF extends javax.swing.JFrame {
         Task cursoNovo = telaCadastro.getCurso();
         
         TaskController control = new TaskController();
-        listaCursos = (ArrayList<Task>) control.addCurso(cursoNovo, listaCursos);
-        carregarCursos();
-    }//GEN-LAST:event_btnAdicionarActionPerformed
+        tasksList = (ArrayList<Task>) control.addTask(cursoNovo, tasksList);
+        loadTaskTypes();
+    }
 
     /**
      * @param args the command line arguments
@@ -136,20 +123,20 @@ public class CursosJF extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CursosJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view.TasksJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CursosJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view.TasksJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CursosJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view.TasksJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CursosJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(view.TasksJF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CursosJF().setVisible(true);
+                new view.TasksJF().setVisible(true);
             }
         });
     }
@@ -160,6 +147,6 @@ public class CursosJF extends javax.swing.JFrame {
     private javax.swing.JButton btnRemover;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<Task> lstCursos;
+    private javax.swing.JList<Task> taskJList;
     // End of variables declaration//GEN-END:variables
 }
