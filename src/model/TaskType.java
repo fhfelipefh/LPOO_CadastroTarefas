@@ -1,0 +1,5 @@
+package model;
+
+public enum TaskType {
+    ANALISE_REQUISITOS, TESTE, DOCUMENTACAO, GERENCIA_PROJETO, SUPORTE;
+}

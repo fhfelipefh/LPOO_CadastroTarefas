@@ -4,10 +4,10 @@
  */
 package visão;
 
-import controle.CursoController;
+import controle.TaskController;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import modelo.Curso;
+import modelo.Task;
 
 /**
  *
@@ -15,14 +15,14 @@ import modelo.Curso;
  */
 public class CursosJF extends javax.swing.JFrame {
 
-    ArrayList<Curso> listaCursos = new ArrayList<>();
+    ArrayList<Task> listaCursos = new ArrayList<>();
     
     
     public void carregarCursos(){
         DefaultListModel modelo = new DefaultListModel();
         modelo.removeAllElements();
         
-        for(Curso c: listaCursos){
+        for(Task c: listaCursos){
             modelo.addElement(c);
         }
         
@@ -109,13 +109,13 @@ public class CursosJF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        CadastroCursoJD telaCadastro = new CadastroCursoJD(this, true);
+        RegisterTaskJD telaCadastro = new RegisterTaskJD(this, true);
         telaCadastro.setVisible(true);
         
-        Curso cursoNovo = telaCadastro.getCurso();
+        Task cursoNovo = telaCadastro.getCurso();
         
-        CursoController control = new CursoController();
-        listaCursos = (ArrayList<Curso>) control.addCurso(cursoNovo, listaCursos);
+        TaskController control = new TaskController();
+        listaCursos = (ArrayList<Task>) control.addCurso(cursoNovo, listaCursos);
         carregarCursos();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -160,6 +160,6 @@ public class CursosJF extends javax.swing.JFrame {
     private javax.swing.JButton btnRemover;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<Curso> lstCursos;
+    private javax.swing.JList<Task> lstCursos;
     // End of variables declaration//GEN-END:variables
 }

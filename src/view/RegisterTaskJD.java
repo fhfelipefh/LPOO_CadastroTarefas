@@ -2,24 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package visão;
+package view;
 
 import java.util.ArrayList;
 import java.util.List;
-import modelo.CategoriaCurso;
-import modelo.Curso;
+import model.TaskType;
+import model.Task;
 
 /**
  *
  * @author vanessalagomachado
  */
-public class CadastroCursoJD extends javax.swing.JDialog {
+public class RegisterTaskJD extends javax.swing.JDialog {
     
-    private Curso curso;
+    private Task curso;
     
    public void carregarCategorias(){
        cmbCategoria.removeAll();
-       for(CategoriaCurso cat: CategoriaCurso.values()){
+       for(TaskType cat: TaskType.values()){
            cmbCategoria.addItem(cat);
        }
    }
@@ -27,11 +27,11 @@ public class CadastroCursoJD extends javax.swing.JDialog {
     /**
      * Creates new form CadastroCursoJD
      */
-    public CadastroCursoJD(java.awt.Frame parent, boolean modal) {
+    public RegisterTaskJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
         initComponents();
-        curso = new Curso();
+        curso = new Task();
         carregarCategorias();
     }
 
@@ -165,7 +165,7 @@ public class CadastroCursoJD extends javax.swing.JDialog {
         curso.setNome(txtNome.getText().trim());
         curso.setDescricao(txtDescricao.getText().trim());
         curso.setCH(Integer.parseInt(txtCH.getText().trim()));
-        curso.setCategoria((CategoriaCurso)cmbCategoria.getSelectedItem());
+        curso.setCategoria((TaskType)cmbCategoria.getSelectedItem());
         
         dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -187,20 +187,21 @@ public class CadastroCursoJD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroCursoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisterTaskJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroCursoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisterTaskJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroCursoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisterTaskJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroCursoJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisterTaskJD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastroCursoJD dialog = new CadastroCursoJD(new javax.swing.JFrame(), true);
+                RegisterTaskJD dialog = new RegisterTaskJD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -215,7 +216,7 @@ public class CadastroCursoJD extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<CategoriaCurso> cmbCategoria;
+    private javax.swing.JComboBox<model.TaskType> cmbCategoria;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCH;
     private javax.swing.JLabel lblCategoria;
@@ -227,11 +228,11 @@ public class CadastroCursoJD extends javax.swing.JDialog {
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 
-    public Curso getCurso() {
+    public Task getCurso() {
         return curso;
     }
 
-    public void setCurso(Curso curso) {
+    public void setCurso(Task curso) {
         this.curso = curso;
     }
 }
