@@ -49,6 +49,11 @@ public class Main extends javax.swing.JFrame {
         jLabelTotalTarefasValue.setText("0");
 
         jButtonReloadDashboard.setText("Recarregar total de tarefas");
+        jButtonReloadDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReloadDashboardActionPerformed(evt);
+            }
+        });
 
         menuCadastro.setText("Cadastro");
 
@@ -114,6 +119,17 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonReloadDashboardActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButtonReloadDashboardActionPerformed
+        // TODO add your handling code here:
+        // atualiza o total de tarefas na tela principal
+        jLabelTotalTarefasValue.setText(String.valueOf(tasksWindow.getTotalTarefas()));
+        // atualiza a barra de progresso com o total de tarefas concluídas
+        jProgressBarTarefasCompletas.setMaximum(tasksWindow.getTotalTarefas());
+        jProgressBarTarefasCompletas.setValue(tasksWindow.getTotalTarefasConcluidas());
+        jProgressBarTarefasCompletas
+                .setString(tasksWindow.getTotalTarefasConcluidas() + " / " + tasksWindow.getTotalTarefas());
+    }// GEN-LAST:event_jButtonReloadDashboardActionPerformed
 
     /**
      * Handler do menu “Cadastro → Tarefa”
