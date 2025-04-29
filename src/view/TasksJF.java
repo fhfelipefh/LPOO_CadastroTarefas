@@ -1,160 +1,119 @@
 package view;
 
 import controller.TaskController;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import model.Task;
 
-public class TasksJF extends javax.swing.JFrame {
+public class TasksJF extends JFrame {
 
-    private ArrayList<Task> tasksList = new ArrayList<>();
+    private final ArrayList<Task> tasksList = new ArrayList<>();
+    private final TaskController controller = new TaskController();
 
-    private void loadTasks() {
-        DefaultListModel<Task> model = new DefaultListModel<>();
-        tasksList.forEach(model::addElement);
-        taskJList.setModel(model);
-    }
+    private JTable taskTable;
+    private JButton btnAdicionar;
+    private JButton btnRemover;
+    private JButton btnEditar;
 
     public TasksJF() {
+        super("Organizador de Tarefas");
         initComponents();
         loadTasks();
-    }
-
-    @SuppressWarnings("unchecked")
-    private void initComponents() {
-
-        lblTitulo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        taskJList = new javax.swing.JList<>();
-        btnAdicionar = new javax.swing.JButton();
-        btnRemover = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Organizador de Tarefas");
-
-        lblTitulo.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        lblTitulo.setText("Tarefas Cadastradas");
-
-        jScrollPane1.setViewportView(taskJList);
-
-        btnAdicionar.setText("Adicionar");
-        btnAdicionar.addActionListener(this::btnAdicionarActionPerformed);
-
-        btnRemover.setText("Remover");
-        btnRemover.addActionListener(this::btnRemoverActionPerformed);
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(this::btnEditarActionPerformed);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblTitulo)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 134,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                                                .addComponent(btnRemover)
-                            .addGap(18, 18, 18)
-                                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 133,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(lblTitulo)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnAdicionar)
-                                        .addComponent(btnRemover)
-                                        .addComponent(btnEditar))
-                                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>
-
-
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {
-        RegisterTaskJD cadastro = new RegisterTaskJD(this, true);
-        cadastro.setVisible(true);
-
-        Task novaTask = cadastro.getTask();
-        if (novaTask == null)
-            return;
-
-        TaskController controller = new TaskController();
-        tasksList = (ArrayList<Task>) controller.addTask(novaTask, tasksList);
-
-        loadTasks();
     }
 
-    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {
-        int idx = taskJList.getSelectedIndex();
-        if (idx == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione uma tarefa para remover.",
-                    "Nenhuma seleção", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+    private void initComponents() {
+        btnAdicionar = new JButton("Adicionar");
+        btnRemover = new JButton("Remover");
+        btnEditar = new JButton("Editar");
 
-        Task selecionada = taskJList.getModel().getElementAt(idx);
-        int confirm = JOptionPane.showConfirmDialog(this,
-                "Remover a tarefa \"" + selecionada.getName() + "\"?",
-                "Confirmar remoção", JOptionPane.YES_NO_OPTION);
-        if (confirm != JOptionPane.YES_OPTION)
-            return;
+        btnAdicionar.addActionListener(e -> onAdd());
+        btnRemover.addActionListener(e -> onRemove());
+        btnEditar.addActionListener(e -> onEdit());
 
-        TaskController controller = new TaskController();
-        tasksList = (ArrayList<Task>) controller.removeTask(selecionada, tasksList);
+        JPanel topPanel = new JPanel();
+        topPanel.add(btnAdicionar);
+        topPanel.add(btnRemover);
+        topPanel.add(btnEditar);
 
-        loadTasks();
+        taskTable = new JTable();
+        JScrollPane scroll = new JScrollPane(taskTable);
+
+        getContentPane().setLayout(new BorderLayout(5, 5));
+        getContentPane().add(topPanel, BorderLayout.NORTH);
+        getContentPane().add(scroll, BorderLayout.CENTER);
+
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(700, 400);
     }
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
-        int idx = taskJList.getSelectedIndex();
-        if (idx == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione uma tarefa para editar.",
-                    "Nenhuma seleção", JOptionPane.WARNING_MESSAGE);
+    private void loadTasks() {
+        TaskTableModel model = new TaskTableModel(tasksList);
+        taskTable.setModel(model);
+
+        taskTable.getColumnModel()
+                .getColumn(3)
+                .setCellEditor(new DefaultCellEditor(new JCheckBox()));
+
+        taskTable.getColumnModel()
+                .getColumn(4)
+                .setCellRenderer(new ButtonRenderer());
+        taskTable.getColumnModel()
+                .getColumn(4)
+                .setCellEditor(new ButtonEditor(taskTable));
+    }
+
+    private void onAdd() {
+        RegisterTaskJD dlg = new RegisterTaskJD(this, true);
+        dlg.setVisible(true);
+        Task t = dlg.getTask();
+        if (t != null) {
+            controller.addTask(t, tasksList);
+            loadTasks();
+        }
+    }
+
+    private void onRemove() {
+        int row = taskTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Selecione uma tarefa para remover.",
+                    "Nenhuma seleção",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
+        Task t = tasksList.get(row);
+        int resp = JOptionPane.showConfirmDialog(this,
+                "Deseja remover a tarefa \"" + t.getName() + "\"?",
+                "Confirmar remoção",
+                JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            controller.removeTask(t, tasksList);
+            loadTasks();
+        }
+    }
 
-        Task selecionada = taskJList.getModel().getElementAt(idx);
-
-        RegisterTaskJD editar = new RegisterTaskJD(this, true, selecionada);
-        editar.setVisible(true);
-
-        Task alterada = editar.getTask();
-        if (alterada == null)
+    private void onEdit() {
+        int row = taskTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Selecione uma tarefa para editar.",
+                    "Nenhuma seleção",
+                    JOptionPane.WARNING_MESSAGE);
             return;
-
-        TaskController controller = new TaskController();
-        tasksList = (ArrayList<Task>) controller.editTask(selecionada, alterada, tasksList);
-
-        loadTasks();
+        }
+        Task original = tasksList.get(row);
+        RegisterTaskJD dlg = new RegisterTaskJD(this, true, original);
+        dlg.setVisible(true);
+        Task updated = dlg.getTask();
+        if (updated != null) {
+            controller.editTask(original, updated, tasksList);
+            loadTasks();
+        }
     }
 
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(() -> new TasksJF().setVisible(true));
+        SwingUtilities.invokeLater(() -> new TasksJF().setVisible(true));
     }
-
-    private javax.swing.JButton btnAdicionar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnRemover;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<Task> taskJList;
 }
