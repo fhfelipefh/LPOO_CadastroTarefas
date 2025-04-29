@@ -28,7 +28,7 @@ public class AboutJD extends javax.swing.JDialog {
 
         jLabel2.setText("Sistema de Cadastro de tarefas.");
 
-        jLabel3.setText("Desenvolvido na disciplina de LPOO (2025-1)");
+        jLabel3.setText("Desenvolvido por fhfelipefh na disciplina de LPOO (2025-1)");
 
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
