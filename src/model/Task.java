@@ -53,7 +53,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Tarefa: " + "Nome: " + name + " | Descrição: " + description + " | Concluído: " + isCompleted + " | Tipo: " + taskType;
+        return "Nome: " + name + " | Descrição: " + description + " | Concluído: " + isCompleted + " | Tipo: "
+                + taskType;
     }
 
     @Override
