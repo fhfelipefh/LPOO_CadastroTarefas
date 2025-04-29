@@ -6,6 +6,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
+/**
+ * ButtonEditor:
+ * Estende DefaultCellEditor para transformar uma célula em um editor
+ * que usa JButton. Ao clicar no botão, alterna o estado “concluída”
+ * no TaskTableModel.
+ */
 public class ButtonEditor extends DefaultCellEditor {
     private final JButton button;
     private String label;
