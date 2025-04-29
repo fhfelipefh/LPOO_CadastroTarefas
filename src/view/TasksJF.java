@@ -112,6 +112,14 @@ public class TasksJF extends JFrame {
         }
     }
 
+    public int getTotalTarefas() {
+        return tasksList.size();
+    }
+
+    public int getTotalTarefasConcluidas() {
+        return (int) tasksList.stream().filter(Task::isCompleted).count();
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TasksJF().setVisible(true));
     }

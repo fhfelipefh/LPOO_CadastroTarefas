@@ -111,6 +111,15 @@ public class Main extends javax.swing.JFrame {
      */
     private void miTarefaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_miTarefaActionPerformed
         tasksWindow.setVisible(true);
+        // atualiza o total de tarefas na tela principal
+        jLabelTotalTarefasValue.setText(String.valueOf(tasksWindow.getTotalTarefas()));
+
+        // atualiza a barra de progresso com o total de tarefas concluídas
+        jProgressBarTarefasCompletas.setMaximum(tasksWindow.getTotalTarefas());
+        jProgressBarTarefasCompletas.setValue(tasksWindow.getTotalTarefasConcluidas());
+        jProgressBarTarefasCompletas
+                .setString(tasksWindow.getTotalTarefasConcluidas() + " / " + tasksWindow.getTotalTarefas());
+
     }// GEN-LAST:event_miTarefaActionPerformed
 
     /**
