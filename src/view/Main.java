@@ -189,6 +189,13 @@ public class Main extends javax.swing.JFrame {
         jProgressBarTarefasCompletas.setValue(tasksWindow.getTotalTarefasConcluidas());
         jProgressBarTarefasCompletas
                 .setString(tasksWindow.getTotalTarefasConcluidas() + " / " + tasksWindow.getTotalTarefas());
+
+        // atualiza a lista de tarefas concluídas
+        jListCompletedTasks1.setListData(tasksWindow.getTarefas(true).toArray(new String[0]));
+
+        // atualiza a lista de tarefas não concluídas
+        jListNotCompletedTasks.setListData(tasksWindow.getTarefas(false).toArray(new String[0]));
+
     }// GEN-LAST:event_jButtonReloadDashboardActionPerformed
 
     /**

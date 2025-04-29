@@ -120,6 +120,16 @@ public class TasksJF extends JFrame {
         return (int) tasksList.stream().filter(Task::isCompleted).count();
     }
 
+    public ArrayList<Task> getTarefas(boolean completed) {
+        ArrayList<Task> filteredTasks = new ArrayList<>();
+        for (Task task : tasksList) {
+            if (task.isCompleted() == completed) {
+                filteredTasks.add(task);
+            }
+        }
+        return filteredTasks;
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TasksJF().setVisible(true));
     }
