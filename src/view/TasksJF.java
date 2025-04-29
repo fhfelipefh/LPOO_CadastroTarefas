@@ -53,6 +53,7 @@ public class TasksJF extends JFrame {
         TaskTableModel model = new TaskTableModel(tasksList);
         taskTable.setModel(model);
 
+        // define um JCheckBox como editor para a coluna 3 (boolean “Concluída”)
         taskTable.getColumnModel()
                 .getColumn(3)
                 .setCellEditor(new DefaultCellEditor(new JCheckBox()));
