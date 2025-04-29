@@ -4,6 +4,21 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuCadastro">
@@ -73,11 +88,16 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabelTarefasCompletas" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jProgressBarTarefasCompletas" pref="521" max="32767" attributes="0"/>
+                      <Component id="jProgressBarTarefasCompletas" pref="561" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jButtonReloadDashboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabelCompleted" min="-2" pref="319" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelNotCompleted" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -97,7 +117,12 @@
                   <Component id="jProgressBarTarefasCompletas" max="32767" attributes="0"/>
                   <Component id="jLabelTarefasCompletas" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="347" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabelCompleted" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelNotCompleted" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="325" max="32767" attributes="0"/>
               <Component id="jButtonReloadDashboard" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
@@ -129,6 +154,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReloadDashboardActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelCompleted">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Concluidas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelNotCompleted">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="N&#xe3;o conclu&#xed;das"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
