@@ -43,7 +43,7 @@ public class RegisterTaskJD extends javax.swing.JDialog {
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Helvetica Neue", 0, 18));
         lblTitulo.setText("Cadastro de Tarefa");

@@ -3,6 +3,7 @@ package view;
 import javax.swing.SwingUtilities;
 
 public class Main extends javax.swing.JFrame {
+    private final TasksJF tasksWindow = new TasksJF();
 
     public Main() {
         initComponents();
@@ -52,8 +53,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void miTarefaActionPerformed(java.awt.event.ActionEvent evt) {
-        TasksJF telaTasks = new TasksJF();
-        telaTasks.setVisible(true);
+        tasksWindow.setVisible(true);
     }
 
     private void miSobreActionPerformed(java.awt.event.ActionEvent evt) {

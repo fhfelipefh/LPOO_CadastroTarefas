@@ -45,7 +45,7 @@ public class TasksJF extends JFrame {
         getContentPane().add(topPanel, BorderLayout.NORTH);
         getContentPane().add(scroll, BorderLayout.CENTER);
 
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         setSize(700, 400);
     }
 
