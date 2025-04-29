@@ -47,7 +47,7 @@ public class Task {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
+    public void setIsCompleted(boolean completed) {
         isCompleted = completed;
     }
 
