@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.SwingUtilities;
+import model.Task;
 
 /**
  * Janela principal com menu para abrir a tela de tarefas.
@@ -191,10 +192,12 @@ public class Main extends javax.swing.JFrame {
                 .setString(tasksWindow.getTotalTarefasConcluidas() + " / " + tasksWindow.getTotalTarefas());
 
         // atualiza a lista de tarefas concluídas
-        jListCompletedTasks1.setListData(tasksWindow.getTarefas(true).toArray(new String[0]));
+        Task[] arr = tasksWindow.getTarefas(true).toArray(new Task[0]);
+        jListCompletedTasks1.setListData(arr);
 
         // atualiza a lista de tarefas não concluídas
-        jListNotCompletedTasks.setListData(tasksWindow.getTarefas(false).toArray(new String[0]));
+        arr = tasksWindow.getTarefas(false).toArray(new Task[0]);
+        jListNotCompletedTasks.setListData(arr);
 
     }// GEN-LAST:event_jButtonReloadDashboardActionPerformed
 
@@ -239,8 +242,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTarefasCompletas;
     private javax.swing.JLabel jLabelTotalTarefas;
     private javax.swing.JLabel jLabelTotalTarefasValue;
-    private javax.swing.JList<String> jListCompletedTasks1;
-    private javax.swing.JList<String> jListNotCompletedTasks;
+    private javax.swing.JList<Task> jListCompletedTasks1;
+    private javax.swing.JList<Task> jListNotCompletedTasks;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
